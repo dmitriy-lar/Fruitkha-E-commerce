@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+          content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
+
+    <!-- title -->
+    {% block title %}
+    {% endblock title %}
+
+    {% block links %}
+    {% endblock links %}
+
+</head>
+<body>
+
+<!--preload-->
+{% include 'store/include_files/_preloader.html' %}
+
+
+<!--navbar-->
+{% include 'store/include_files/_navbar.html' %}
+
+<!--content-->
+{% block content %}
+{% endblock content %}
+
+<!--footer-->
+{% include 'store/include_files/_footer.html' %}
+
+
+<!--js-links-->
+{% include 'store/include_files/_js_links.html' %}
+
+
+</body>
+</html>

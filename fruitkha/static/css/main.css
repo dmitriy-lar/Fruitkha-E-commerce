@@ -2394,10 +2394,15 @@ ul.social-link-team li a {
   cursor: pointer;
   padding: 8px 20px;
   border-radius: 25px;
+  transition: 0.3s;
 }
 
 .product-filters ul li.active {
   border: 2px solid #F28123;
+  background-color: #F28123;
+  color: #fff;
+
+}.product-filters ul li:hover {
   background-color: #F28123;
   color: #fff;
 }

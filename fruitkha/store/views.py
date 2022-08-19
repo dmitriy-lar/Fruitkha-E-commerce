@@ -6,4 +6,10 @@ def home_page(request):
 
 
 def shop_page(request):
-    return render(request, 'store/shop.html')
+
+
+    categories = ['All', 'Strawberry', 'Berry', 'Lemon']
+    context = {
+        'categories': categories
+    }
+    return render(request, 'store/shop.html', context)

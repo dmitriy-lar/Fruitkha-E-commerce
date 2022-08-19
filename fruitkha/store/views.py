@@ -15,3 +15,7 @@ def shop_page(request):
 
 def cart_page(reqeust):
     return render(reqeust, 'store/cart.html')
+
+
+def single_product_page(request):
+    return render(request, 'store/single-product.html')

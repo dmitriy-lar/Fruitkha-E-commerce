@@ -16,16 +16,14 @@
                     <!-- menu start -->
                     <nav class="main-menu">
                         <ul>
-                            <!--                                  class="current-list-item"-->
                             <li><a href="{% url 'home_page' %}">Home</a></li>
-                            <li><a href="shop.html">Shop</a></li>
+                            <li><a href="{% url 'shop_page' %}">Shop</a></li>
                             {% if user.is_authenticated %}
-                            <li><a href="news.html">Profile</a>
-									<ul class="sub-menu">
-										<li><a href="single-news.html">Account</a></li>
-										<li><a href="single-news.html">Log out</a></li>
-									</ul>
-								</li>
+                            <li><a href="news.html"><i class="bi bi-person" style="font-size: 1.42em;"></i></a>
+                                <ul class="sub-menu">
+                                    <li><a href="news.html">Log out</a></li>
+                                </ul>
+                            </li>
                             {% else %}
                             <li><a href="shop.html">Sign in</a></li>
                             <li><a href="shop.html">Sign up</a></li>

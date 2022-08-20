@@ -1,8 +1,22 @@
-from django.shortcuts import render
+from django.contrib import messages
+from django.shortcuts import render, redirect
+from .forms import NewsLetterForm
 
 
 def home_page(request):
-    return render(request, 'store/index.html')
+    if request.method == 'POST':
+        form = NewsLetterForm(request.POST or None)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'You successfully subscribed!')
+            return redirect('home_page')
+    else:
+        form = NewsLetterForm()
+
+    context = {
+        'form': form
+    }
+    return render(request, 'store/index.html', context)
 
 
 def shop_page(request):

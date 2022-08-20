@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from .forms import NewsLetterForm
-
+from .models import Category
 
 def home_page(request):
     if request.method == 'POST':
@@ -20,7 +20,7 @@ def home_page(request):
 
 
 def shop_page(request):
-    categories = ['All', 'Strawberry', 'Berry', 'Lemon']
+    categories = Category.objects.all()
     context = {
         'categories': categories
     }

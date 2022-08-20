@@ -1,0 +1,78 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+<!-- title -->
+{% block title %}
+<title>Sign in</title>
+{% endblock title %}
+
+{% block links %}
+{% endblock links %}
+
+{% block content %}
+<style>
+    .errorlist {
+    color:red;
+}
+
+</style>
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>Fresh and Organic</p>
+                    <h1>Sign in</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- end breadcrumb section -->
+
+<!-- products -->
+<div class="product-section mt-100 mb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button class="btn btn-warning" style="width:100px;">Sign in</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end products -->
+
+<!-- logo carousel -->
+<div class="logo-carousel-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="logo-carousel-inner">
+                    <div class="single-logo-item">
+                        <img src="{% static 'img/company-logos/1.png' %}" alt="">
+                    </div>
+                    <div class="single-logo-item">
+                        <img src="{% static 'img/company-logos/2.png' %}" alt="">
+                    </div>
+                    <div class="single-logo-item">
+                        <img src="{% static 'img/company-logos/3.png' %}" alt="">
+                    </div>
+                    <div class="single-logo-item">
+                        <img src="{% static 'img/company-logos/4.png' %}" alt="">
+                    </div>
+                    <div class="single-logo-item">
+                        <img src="{% static 'img/company-logos/5.png' %}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end logo carousel -->
+{% endblock content %}

@@ -21,16 +21,17 @@
                             {% if user.is_authenticated %}
                             <li><a href="news.html"><i class="bi bi-person" style="font-size: 1.42em;"></i></a>
                                 <ul class="sub-menu">
-                                    <li><a href="news.html">Log out</a></li>
+                                    <li><a href="{% url 'logout' %}">Log out</a></li>
                                 </ul>
                             </li>
                             {% else %}
-                            <li><a href="shop.html">Sign in</a></li>
-                            <li><a href="shop.html">Sign up</a></li>
+                            <li><a href="{% url 'login' %}">Sign in</a></li>
+                            <li><a href="{% url 'register' %}">Sign up</a></li>
                             {% endif %}
                             <li>
                                 <div class="header-icons">
-                                    <a class="shopping-cart" href="{% url 'cart_page' %}"><i class="fas fa-shopping-cart"></i></a>
+                                    <a class="shopping-cart" href="{% url 'cart_page' %}"><i
+                                            class="fas fa-shopping-cart"></i></a>
                                     <a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
                                 </div>
                             </li>
@@ -40,9 +41,11 @@
                     <div class="mobile-menu"></div>
                     <!-- menu end -->
                 </div>
+
             </div>
         </div>
     </div>
+
 </div>
 <!-- end header -->
 
@@ -64,3 +67,4 @@
     </div>
 </div>
 <!-- end search area -->
+

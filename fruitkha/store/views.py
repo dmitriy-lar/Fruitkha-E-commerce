@@ -95,3 +95,19 @@ def category_page(request, category_slug):
         'current_category': current_category
     }
     return render(request, 'store/category.html', context)
+
+
+def search(request):
+    categories = Category.objects.all()
+
+    products = Product.objects.all()
+    query = request.GET.get('q')
+    if query:
+        products = products.filter(title__icontains=query)
+
+    context = {
+        'categories': categories,
+        'products': products,
+        'search_name': query,
+    }
+    return render(request, 'store/search.html', context)

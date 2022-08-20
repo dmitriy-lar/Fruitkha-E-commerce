@@ -10,7 +10,7 @@ class Newsletter(models.Model):
 
 class Category(models.Model):
     title = models.CharField(max_length=100)
-    slug = models.SlugField(max_length=100)
+    slug = models.SlugField(max_length=100, unique=True)
 
     def __str__(self):
         return self.title
@@ -22,7 +22,7 @@ class Category(models.Model):
 
 class Product(models.Model):
     title = models.CharField(max_length=500)
-    slug = models.SlugField(max_length=500)
+    slug = models.SlugField(max_length=500, unique=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     description = models.TextField()
     price = models.IntegerField(default=0)

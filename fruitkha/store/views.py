@@ -25,7 +25,7 @@ def shop_page(request):
     categories = Category.objects.all()
     products = Product.objects.all()
 
-    paginator = Paginator(products, 1)
+    paginator = Paginator(products, 6)
     page_request_value = 'page'
     page = request.GET.get(page_request_value)
     try:

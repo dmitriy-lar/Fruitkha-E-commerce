@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from .forms import NewsLetterForm
-from .models import Category
+from .models import Category, Product
 
 def home_page(request):
     if request.method == 'POST':
@@ -21,8 +21,10 @@ def home_page(request):
 
 def shop_page(request):
     categories = Category.objects.all()
+    products = Product.objects.all()
     context = {
-        'categories': categories
+        'categories': categories,
+        'products': products
     }
     return render(request, 'store/shop.html', context)
 

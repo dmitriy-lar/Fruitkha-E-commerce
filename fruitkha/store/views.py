@@ -1,8 +1,12 @@
 from django.contrib import messages
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import NewsLetterForm
 from .models import Category, Product
+
+
+def page_not_found_view(request, exception):
+    return render(request, 'store/404.html', status=404)
 
 
 def newsletter_handler(request):
@@ -49,16 +53,18 @@ def shop_page(request):
 
 
 def cart_page(request):
-
     context = {
         'form': newsletter_handler(request),
     }
     return render(request, 'store/cart.html', context)
 
 
-def single_product_page(request):
-
+def single_product_page(request, product_slug):
+    product = get_object_or_404(Product, slug=product_slug)
+    related_products = Product.objects.filter(category=product.category).exclude(pk=product.pk)[:3]
     context = {
+        'product': product,
+        'related_products': related_products,
         'form': newsletter_handler(request),
     }
     return render(request, 'store/single-product.html', context)
@@ -87,6 +93,3 @@ def category_page(request, category_slug):
         'current_category': current_category
     }
     return render(request, 'store/category.html', context)
-
-
-

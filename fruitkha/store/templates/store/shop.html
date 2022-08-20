@@ -10,9 +10,6 @@
 {% endblock links %}
 
 
-
-
-
 {% block content %}
 <!-- breadcrumb-section -->
 <div class="breadcrumb-section breadcrumb-bg">
@@ -40,7 +37,9 @@
                     <ul>
                         <h3 style="color:#F28123">Categories:</h3>
                         {% for category in categories %}
-                        <a href="{% url 'shop_page' %}"><li>{{ category }}</li></a>
+                        <a href="{% url 'shop_page' %}">
+                            <li>{{ category }}</li>
+                        </a>
                         {% endfor %}
                     </ul>
                 </div>
@@ -52,7 +51,8 @@
             <div class="col-lg-4 col-md-6 text-center strawberry">
                 <div class="single-product-item">
                     <div class="product-image">
-                        <a href="{% url 'single_product_page' %}"><img src="{{ product.thumbnail.url }}" alt="" style="height:240px; "></a>
+                        <a href="{% url 'single_product_page' %}"><img src="{{ product.thumbnail.url }}" alt=""
+                                                                       style="height:240px; "></a>
                     </div>
                     <h3>{{ product.title }}</h3>
                     <p class="product-price"><span>Per Kg</span> {{ product.price }}$ </p>
@@ -66,11 +66,21 @@
             <div class="col-lg-12 text-center">
                 <div class="pagination-wrap">
                     <ul>
-                        <li><a href="#">Prev</a></li>
-                        <li><a href="#">1</a></li>
-                        <li><a class="active" href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">Next</a></li>
+                        {% if products.has_previous %}
+                        <li><a href="?{{ page_request_value }}={{ products.previous_page_number }}">Prev</a></li>
+                        {% endif %}
+                        {% for item in products.paginator.page_range %}
+                        {% if item > products.number|add:-3 and item < products.number|add:3 %}
+                        {% if products.number == item %}
+                        <li><a class="active" href="?{{ page_request_value }}={{ item }}">{{ item }}</a></li>
+                        {% else %}
+                        <li><a href="?{{ page_request_value }}={{ item }}">{{ item }}</a></li>
+                        {% endif %}
+                        {% endif %}
+                        {% endfor %}
+                        {% if products.has_next %}
+                        <li><a href="?{{ page_request_value }}={{ products.next_page_number }}">Next</a></li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>

@@ -22,7 +22,9 @@ def newsletter_handler(request):
 
 
 def home_page(request):
+    products = Product.objects.all()[:3]
     context = {
+        'products': products,
         'form': newsletter_handler(request)
     }
     return render(request, 'store/index.html', context)

@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 
-from fruitkha.store.models import Product
+from store.models import Product
 
 
 class OrderItem(models.Model):

@@ -55,13 +55,6 @@ def shop_page(request):
     return render(request, 'store/shop.html', context)
 
 
-def cart_page(request):
-    context = {
-        'form': newsletter_handler(request),
-    }
-    return render(request, 'store/cart.html', context)
-
-
 def single_product_page(request, product_slug):
     product = get_object_or_404(Product, slug=product_slug)
     related_products = Product.objects.filter(category=product.category).exclude(pk=product.pk)[:3]
@@ -112,5 +105,3 @@ def search(request):
         'search_name': query,
     }
     return render(request, 'store/search.html', context)
-
-

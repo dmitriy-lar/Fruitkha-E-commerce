@@ -22,8 +22,8 @@
                             {% if user.is_authenticated %}
                             <li><a href="#"><i class="bi bi-person" style="font-size: 1.42em;"></i></a>
                                 <ul class="sub-menu">
-                                    <li><a href="#">Profile</a></li>
-                                    <li><a href="{% url 'logout' %}">Log out</a></li>
+                                    <li><a href="{% url 'profile' %}">Profile</a></li>
+                                    <li><a href="{% url 'logout_confirmation' %}">Log out</a></li>
                                 </ul>
 
                             </li>

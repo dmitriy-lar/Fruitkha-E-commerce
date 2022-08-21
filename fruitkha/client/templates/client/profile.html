@@ -1,0 +1,65 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+<!-- title -->
+{% block title %}
+<title>Sign in</title>
+{% endblock title %}
+
+{% block links %}
+{% endblock links %}
+
+{% block content %}
+
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert"
+                         style="border-radius:20px; font-family: 'Poppins', sans-serif; font-size:15px;">
+                        {{ message }}
+                        <button type="button" class="bi bi-x-circle" data-bs-dismiss="alert"
+                                aria-label="Close"
+                                style="border-radius:10px; background-color:#F28123; color:#fff; margin-left:10px;"></button>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                    <p>Fresh and Organic</p>
+                    <h1>My Profile</h1>
+                    <h2 class="mt-4" style="color:#F28123;">{{ request.user.username }}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- end breadcrumb section -->
+<div class="product-section mt-100 mb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                {% if order %}
+                <h1>My orders</h1>
+                {% else %}
+                <div class="row" style="padding-top:10px; margin-bottom:20px;">
+                    <div class="col-12 text-center">
+                        <div class="error-text">
+                            <i class="far fa-sad-cry"></i>
+                            <h1>Oops! You haven't bought anything yet</h1>
+                            <a href="{% url 'shop_page' %}" class="boxed-btn">Start Shopping</a>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% include 'store/include_files/_logo_carousel.html' %}
+{% endblock content %}

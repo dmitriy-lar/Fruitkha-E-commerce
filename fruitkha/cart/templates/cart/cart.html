@@ -37,6 +37,7 @@
 </div>
 <!-- end breadcrumb section -->
 
+{% if order.items.all %}
 <!-- cart -->
 <div class="cart-section mt-150 mb-150">
     <div class="container">
@@ -55,33 +56,22 @@
                         </tr>
                         </thead>
                         <tbody>
+                        {% for order_item in order.items.all %}
                         <tr class="table-body-row">
-                            <td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
-                            <td class="product-image"><img src="{% static 'img/products/product-img-1.jpg' %}" alt="">
+                            <td class="product-remove"><a href="{% url 'remove_from_cart' order_item.product.slug %}"><i
+                                    class="far fa-window-close"></i></a></td>
+                            <td class="product-image"><img src="{{ order_item.product.thumbnail.url }}" alt="">
                             </td>
-                            <td class="product-name">Strawberry</td>
-                            <td class="product-price">$85</td>
-                            <td class="product-quantity"><input type="number" placeholder="0"></td>
-                            <td class="product-total">1</td>
+                            <td class="product-name">{{ order_item.product.title }}</td>
+                            <td class="product-price">${{ order_item.product.price }}</td>
+                            <form action="{% url 'update_cart_item_quantity' %}" method="POST">
+                                {% csrf_token %}
+                                <td class="product-quantity"><input type="number"
+                                                                    placeholder="{{ order_item.quantity }}"
+                                                                    name="{{ order_item.product.title }}" value="{{ order_item.quantity  }}"></td>
+                                <td class="product-total">${{ order_item.get_single_total_price }}</td>
                         </tr>
-                        <tr class="table-body-row">
-                            <td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
-                            <td class="product-image"><img src="{% static 'img/products/product-img-2.jpg' %}" alt="">
-                            </td>
-                            <td class="product-name">Berry</td>
-                            <td class="product-price">$70</td>
-                            <td class="product-quantity"><input type="number" placeholder="0"></td>
-                            <td class="product-total">1</td>
-                        </tr>
-                        <tr class="table-body-row">
-                            <td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
-                            <td class="product-image"><img src="{% static 'img/products/product-img-3.jpg' %}" alt="">
-                            </td>
-                            <td class="product-name">Lemon</td>
-                            <td class="product-price">$35</td>
-                            <td class="product-quantity"><input type="number" placeholder="0"></td>
-                            <td class="product-total">1</td>
-                        </tr>
+                        {% endfor %}
                         </tbody>
                     </table>
                 </div>
@@ -98,21 +88,14 @@
                         </thead>
                         <tbody>
                         <tr class="total-data">
-                            <td><strong>Subtotal: </strong></td>
-                            <td>$500</td>
-                        </tr>
-                        <tr class="total-data">
-                            <td><strong>Shipping: </strong></td>
-                            <td>$45</td>
-                        </tr>
-                        <tr class="total-data">
                             <td><strong>Total: </strong></td>
-                            <td>$545</td>
+                            <td>${{ order.get_total }}</td>
                         </tr>
                         </tbody>
                     </table>
                     <div class="cart-buttons">
-                        <a href="cart.html" class="boxed-btn">Update Cart</a>
+                        <button type="submit" name="system" value="1" class="update-btn">Update Cart</button>
+                        </form>
                         <a href="checkout.html" class="boxed-btn black">Check Out</a>
                     </div>
                 </div>
@@ -121,6 +104,16 @@
     </div>
 </div>
 <!-- end cart -->
-
+{% else %}
+<div class="row" style="margin-top:100px; margin-bottom:150px;">
+    <div class="col-12 text-center">
+        <div class="error-text">
+            <i class="far fa-sad-cry"></i>
+            <h2>Oops! You don`t have any products in your cart</h2>
+            <a href="{% url 'shop_page' %}" class="boxed-btn">Start Shopping</a>
+        </div>
+    </div>
+</div>
+{% endif %}
 {% include 'store/include_files/_logo_carousel.html' %}
 {% endblock content %}

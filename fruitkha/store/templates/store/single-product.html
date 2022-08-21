@@ -51,10 +51,10 @@
                     <p class="single-product-pricing"><span>Per Kg</span> ${{ product.price }}</p>
                     <p>{{ product.description }}</p>
                     <div class="single-product-form">
-                        <form action="index.html">
-                            <input type="number" placeholder="0">
-                        </form>
-                        <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+<!--                        <form action="index.html">-->
+<!--                            <input type="number" placeholder="0">-->
+<!--                        </form>-->
+                        <a href="{% url 'add_to_cart' product.slug %}" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
                         <p><strong>Categories: </strong>{{ product.category.title }}</p>
                     </div>
                 </div>
@@ -86,7 +86,7 @@
                     </div>
                     <h3>{{ product.title }}</h3>
                     <p class="product-price"><span>Per Kg</span> {{ product.price }}$ </p>
-                    <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                    <a href="{% url 'add_to_cart' product.slug %}" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
                 </div>
             </div>
             {% endfor %}

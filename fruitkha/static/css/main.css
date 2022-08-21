@@ -2763,3 +2763,18 @@ table.order-details tbody td {
 }
 
 
+.update-btn{
+    font-family: 'Poppins', sans-serif;
+    display: inline-block;
+    background-color: #F28123;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 50px;
+    transition: 0.3s;
+}
+
+.update-btn:hover{
+    background-color: #051922;
+    color: #F28123;
+}

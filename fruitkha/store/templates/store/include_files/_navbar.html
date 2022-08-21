@@ -1,4 +1,5 @@
 {% load static %}
+{% load cart_template_tags %}
 <!-- header -->
 <div class="top-header-area" id="sticker">
     <div class="container">
@@ -19,10 +20,12 @@
                             <li><a href="{% url 'home_page' %}">Home</a></li>
                             <li><a href="{% url 'shop_page' %}">Shop</a></li>
                             {% if user.is_authenticated %}
-                            <li><a href="news.html"><i class="bi bi-person" style="font-size: 1.42em;"></i></a>
+                            <li><a href="#"><i class="bi bi-person" style="font-size: 1.42em;"></i></a>
                                 <ul class="sub-menu">
+                                    <li><a href="#">Profile</a></li>
                                     <li><a href="{% url 'logout' %}">Log out</a></li>
                                 </ul>
+
                             </li>
                             {% else %}
                             <li><a href="{% url 'login' %}">Sign in</a></li>
@@ -30,8 +33,17 @@
                             {% endif %}
                             <li>
                                 <div class="header-icons">
+                                    {% if user.is_authenticated %}
+                                    <a class="shopping-cart" href="{% url 'cart_page' %}"><i
+                                            class="fas fa-shopping-cart"></i>
+                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" >
+    {{ request.user|cart_item_count }}
+  </span>
+                                    </a>
+                                    {% else %}
                                     <a class="shopping-cart" href="{% url 'cart_page' %}"><i
                                             class="fas fa-shopping-cart"></i></a>
+                                    {% endif %}
                                     <a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
                                 </div>
                             </li>

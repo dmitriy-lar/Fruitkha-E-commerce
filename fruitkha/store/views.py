@@ -1,6 +1,8 @@
 from django.contrib import messages
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render, redirect, get_object_or_404
+
+from cart.models import Order
 from .forms import NewsLetterForm
 from .models import Category, Product
 
@@ -15,7 +17,7 @@ def newsletter_handler(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'You successfully subscribed!')
-            return redirect('home_page')
+            # return redirect('home_page')
     else:
         form = NewsLetterForm()
     return form
@@ -102,9 +104,16 @@ def search(request):
         'categories': categories,
         'products': products,
         'search_name': query,
+        'form': newsletter_handler(request),
     }
     return render(request, 'store/search.html', context)
 
 
 def checkout_page(request):
-    return render(request, 'store/checkout.html')
+    order = Order.objects.get(client=request.user, ordered=False)
+    context = {
+        'order': order,
+        'form': newsletter_handler(request)
+    }
+
+    return render(request, 'store/checkout.html', context)

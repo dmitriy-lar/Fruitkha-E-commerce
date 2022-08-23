@@ -12,6 +12,7 @@
 
 {% block content %}
 <!-- breadcrumb-section -->
+<!-- breadcrumb-section -->
 <div class="breadcrumb-section breadcrumb-bg">
     <div class="container">
         <div class="row">
@@ -72,7 +73,7 @@
                     </div>
                     <h3>{{ product.title }}</h3>
                     <p class="product-price"><span>Per Kg</span> {{ product.price }}$ </p>
-                    <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                    <a href="{% url 'add_to_cart' product.slug %}" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
                 </div>
             </div>
             {% endfor %}

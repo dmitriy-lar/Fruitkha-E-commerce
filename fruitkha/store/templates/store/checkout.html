@@ -18,7 +18,7 @@
             <div class="col-lg-8 offset-lg-2 text-center">
                 <div class="breadcrumb-text">
                     <p>Fresh and Organic</p>
-                    <h1>Check Out Product</h1>
+                    <h1>Check Out</h1>
                 </div>
             </div>
         </div>
@@ -116,31 +116,17 @@
                             <td>Product</td>
                             <td>Total</td>
                         </tr>
+                        {% for order_item in order.items.all %}
                         <tr>
-                            <td>Strawberry</td>
-                            <td>$85.00</td>
+                            <td>{{ order_item.product.title }}</td>
+                            <td>${{ order_item.get_single_total_price }}</td>
                         </tr>
-                        <tr>
-                            <td>Berry</td>
-                            <td>$70.00</td>
-                        </tr>
-                        <tr>
-                            <td>Lemon</td>
-                            <td>$35.00</td>
-                        </tr>
+                        {% endfor %}
                         </tbody>
                         <tbody class="checkout-details">
                         <tr>
-                            <td>Subtotal</td>
-                            <td>$190</td>
-                        </tr>
-                        <tr>
-                            <td>Shipping</td>
-                            <td>$50</td>
-                        </tr>
-                        <tr>
                             <td>Total</td>
-                            <td>$240</td>
+                            <td>${{ order.get_total }}</td>
                         </tr>
                         </tbody>
                     </table>

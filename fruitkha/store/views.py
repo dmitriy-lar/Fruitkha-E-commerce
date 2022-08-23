@@ -104,3 +104,7 @@ def search(request):
         'search_name': query,
     }
     return render(request, 'store/search.html', context)
+
+
+def checkout_page(request):
+    return render(request, 'store/checkout.html')
